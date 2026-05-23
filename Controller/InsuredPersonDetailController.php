@@ -19,6 +19,9 @@ class InsuredPersonDetailController extends Controller
         } else {
             $idInsuredPerson = null;
         }
+        if (empty($idInsuredPerson)) {
+            $this->redirect('insuredPersonList');
+        }
 
         if (isset($_GET['delete'])) {
             $insuranceAdministration->deleteInsurance((int)$_GET['delete']);
