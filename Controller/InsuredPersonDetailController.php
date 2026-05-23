@@ -27,7 +27,7 @@ class InsuredPersonDetailController extends Controller
         }
 
         if (isset($parameters[1]) && $parameters[1]) {
-            $page = (int)$parameters[0];
+            $page = (int)$parameters[1];
         } else {
             $page = 1;
         }
@@ -37,11 +37,14 @@ class InsuredPersonDetailController extends Controller
         $limit = 3;
         $offset = ($page - 1) * $limit;
 
+        $totalCount = $insuranceAdministration->getInsuranceCountByInsuredPerson($idInsuredPerson);
+        $totalPages = (int)ceil($totalCount / $limit);
+
         if (empty($parameters[0])) {
             $this->redirect('insuredPerson');
         }
 
-        $insuranceList = $insuranceAdministration->getListOfInsuredPersonInsurences($idInsuredPerson, $limit, $offset);
+        $insuranceList = $insuranceAdministration->getListOfInsuredPersonInsurances($idInsuredPerson, $limit, $offset);
 
         $this->header = [
             'title' => 'Dataily pojištěnce',
@@ -51,6 +54,8 @@ class InsuredPersonDetailController extends Controller
 
         $this->data['insuredPerson'] = $insuredPersonAdministration->getInsuredPersonDetail($idInsuredPerson);
         $this->data['insuranceList'] = $insuranceList;
+        $this->data['page'] = $page;
+        $this->data['totalPages'] = $totalPages;
         $this->data['messages'] = $this->getMessages();
 
         $this->view = 'insuredPersonDetail';

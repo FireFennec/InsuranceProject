@@ -4,7 +4,7 @@ namespace Model;
 
 class InsuranceAdministration
 {
-    public function getListOfInsuredPersonInsurences(int $idIsuredPerson, int $limit, int $offset): array|bool
+    public function getListOfInsuredPersonInsurances(int $idIsuredPerson, int $limit, int $offset): array|bool
     {
         return Db::findAll(
             'SELECT * 
@@ -57,5 +57,15 @@ class InsuranceAdministration
     public function deleteInsurence(int $id): void
     {
         Db::query('DELETE FROM insurences WHERE id = ?', [$id]);
+    }
+
+    public function getInsuranceCountByInsuredPerson(int $idInsuredPerson): int
+    {
+        return Db::findOne(
+            'SELECT COUNT(*) AS count 
+         FROM insurances 
+         WHERE id_insured_person = ?',
+            [$idInsuredPerson]
+        )['count'];
     }
 }
