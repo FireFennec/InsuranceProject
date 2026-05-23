@@ -8,7 +8,7 @@ class InsuranceAdministration
     {
         return Db::findAll(
             'SELECT * 
-            FROM insurences 
+            FROM insurances 
             WHERE id_insured_person = ? 
             ORDER BY id 
             DESC 
@@ -20,13 +20,13 @@ class InsuranceAdministration
 
     public function getInsuranceDetail(int $id): array|bool
     {
-        return  Db::findOne('SELECT * FROM insurences WHERE id = ?', [$id]);
+        return  Db::findOne('SELECT * FROM insurances WHERE id = ?', [$id]);
     }
 
     public function editInsurence(int $idInsurence, InsurenceForm $insuranceForm): void
     {
         Db::query(
-            'UPDATE insurences 
+            'UPDATE insurances 
             SET id_insured_person = ?, 
              kind_of_insurance = ?, 
              sum = ?, 

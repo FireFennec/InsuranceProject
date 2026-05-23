@@ -10,7 +10,7 @@ CREATE TABLE insured_persons (
     zip_code VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE insurences (
+CREATE TABLE insurances (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_insured_person INT NOT NULL,
     kind_of_insurance VARCHAR(100) NOT NULL,
@@ -24,3 +24,86 @@ CREATE TABLE insurences (
         REFERENCES insured_persons(id)
         ON DELETE CASCADE
 );
+
+Testovací data:
+INSERT INTO insured_persons 
+(name, surname, birth, phone, email, address, city, zip_code)
+VALUES
+('Jan', 'Novák', '1985-03-12', '+420777123456', 'jan.novak@email.cz', 'Květnová 12', 'Praha', '11000'),
+
+('Petra', 'Svobodová', '1992-07-25', '+420777654321', 'petra.svobodova@email.cz', 'Lipová 45', 'Brno', '60200'),
+
+('Tomáš', 'Dvořák', '1978-11-08', '+420606112233', 'tomas.dvorak@email.cz', 'Javorová 8', 'Ostrava', '70030'),
+
+('Lucie', 'Černá', '1999-01-17', '+420605998877', 'lucie.cerna@email.cz', 'Sluneční 21', 'Plzeň', '30100'),
+
+('Martin', 'Procházka', '1988-09-30', '+420604445566', 'martin.prochazka@email.cz', 'Polní 77', 'Liberec', '46001'),
+
+('Eva', 'Veselá', '1975-05-14', '+420603221144', 'eva.vesela@email.cz', 'Nádražní 3', 'Olomouc', '77900'),
+
+('David', 'Horák', '1990-12-22', '+420602334455', 'david.horak@email.cz', 'Lesní 19', 'Pardubice', '53002'),
+
+('Kateřina', 'Němcová', '1983-04-05', '+420601556677', 'katerina.nemcova@email.cz', 'Dlouhá 101', 'Hradec Králové', '50003'),
+
+('Filip', 'Král', '2001-08-11', '+420607889900', 'filip.kral@email.cz', 'Krátká 14', 'Zlín', '76001'),
+
+('Anna', 'Pospíšilová', '1995-06-28', '+420608776655', 'anna.pospisilova@email.cz', 'Školní 56', 'České Budějovice', '37001');
+
+('Pavel', 'Marek', '1981-02-19', '+420775112233', 'pavel.marek@email.cz', 'Zahradní 9', 'Kladno', '27201'),
+
+('Veronika', 'Blažková', '1997-10-03', '+420774223344', 'veronika.blazkova@email.cz', 'Růžová 16', 'Jihlava', '58601'),
+
+('Miroslav', 'Kučera', '1969-06-27', '+420773334455', 'miroslav.kucera@email.cz', 'Hlavní 88', 'Karlovy Vary', '36001'),
+
+('Nikola', 'Benešová', '2000-09-15', '+420772445566', 'nikola.benesova@email.cz', 'Tyršova 31', 'Most', '43401'),
+
+('Ondřej', 'Fiala', '1986-12-01', '+420771556677', 'ondrej.fiala@email.cz', 'Sadová 74', 'Tábor', '39001'),
+
+('Alena', 'Kratochvílová', '1974-03-09', '+420770667788', 'alena.kratochvilova@email.cz', 'Mírová 5', 'Opava', '74601'),
+
+('Radek', 'Pokorný', '1993-08-24', '+420769778899', 'radek.pokorny@email.cz', 'Na Výsluní 42', 'Chomutov', '43001'),
+
+('Barbora', 'Sedláčková', '1989-11-13', '+420768889900', 'barbora.sedlackova@email.cz', 'Jarní 28', 'Příbram', '26101'),
+
+('Jakub', 'Vlček', '1998-05-07', '+420767990011', 'jakub.vlcek@email.cz', 'Sportovní 63', 'Frýdek-Místek', '73801'),
+
+('Simona', 'Navrátilová', '1984-01-21', '+420766101112', 'simona.navratilova@email.cz', 'Parková 11', 'Znojmo', '66902');
+
+INSERT INTO insurances
+(id_insured_person, kind_of_insurance, sum, subject_of_insurance, valid_from, valid_until)
+VALUES
+(1, 'Životní pojištění', 500000, 'Život a zdraví', '2025-01-01', '2035-01-01'),
+(2, 'Pojištění vozidla', 320000, 'Škoda Octavia', '2024-06-15', '2025-06-15'),
+(3, 'Cestovní pojištění', 100000, 'Cesta do Itálie', '2026-07-01', '2026-07-14'),
+(4, 'Pojištění nemovitosti', 4500000, 'Rodinný dům', '2023-03-10', '2033-03-10'),
+(5, 'Úrazové pojištění', 250000, 'Úrazy při sportu', '2025-09-01', '2030-09-01'),
+
+(6, 'Pojištění domácnosti', 800000, 'Byt 3+1', '2024-11-01', '2029-11-01'),
+(7, 'Životní pojištění', 700000, 'Život a zdraví', '2022-05-20', '2042-05-20'),
+(8, 'Pojištění vozidla', 280000, 'Ford Focus', '2025-02-01', '2026-02-01'),
+(9, 'Cestovní pojištění', 150000, 'Dovolená v Řecku', '2026-08-05', '2026-08-20'),
+(10, 'Pojištění nemovitosti', 3900000, 'Chata', '2021-04-18', '2031-04-18'),
+
+(11, 'Úrazové pojištění', 300000, 'Pracovní úrazy', '2023-07-12', '2028-07-12'),
+(12, 'Pojištění domácnosti', 950000, 'Rodinný dům', '2024-01-01', '2034-01-01'),
+(13, 'Životní pojištění', 600000, 'Život a zdraví', '2025-05-05', '2040-05-05'),
+(14, 'Pojištění vozidla', 410000, 'BMW X3', '2026-03-01', '2027-03-01'),
+(15, 'Cestovní pojištění', 120000, 'Cesta do Japonska', '2026-10-10', '2026-10-25'),
+
+(16, 'Pojištění nemovitosti', 5200000, 'Vila', '2020-09-15', '2030-09-15'),
+(17, 'Úrazové pojištění', 220000, 'Běžné úrazy', '2024-12-01', '2029-12-01'),
+(18, 'Pojištění domácnosti', 670000, 'Byt 2+kk', '2023-08-08', '2028-08-08'),
+(19, 'Životní pojištění', 900000, 'Život a zdraví', '2021-06-06', '2041-06-06'),
+(20, 'Pojištění vozidla', 350000, 'Audi A4', '2025-11-11', '2026-11-11'),
+
+(21, 'Cestovní pojištění', 200000, 'USA roadtrip', '2026-04-01', '2026-04-21'),
+(3, 'Pojištění domácnosti', 730000, 'Rodinný byt', '2025-02-14', '2030-02-14'),
+(5, 'Pojištění nemovitosti', 4100000, 'Apartmán', '2022-10-10', '2032-10-10'),
+(7, 'Úrazové pojištění', 180000, 'Sportovní úrazy', '2024-04-04', '2029-04-04'),
+(9, 'Životní pojištění', 550000, 'Život a zdraví', '2023-03-03', '2038-03-03'),
+
+(11, 'Pojištění vozidla', 260000, 'Hyundai i30', '2025-07-07', '2026-07-07'),
+(13, 'Cestovní pojištění', 90000, 'Rakouské Alpy', '2026-01-15', '2026-01-22'),
+(15, 'Pojištění domácnosti', 880000, 'Dům se zahradou', '2021-12-12', '2031-12-12'),
+(17, 'Pojištění nemovitosti', 6000000, 'Luxusní vila', '2020-02-02', '2035-02-02'),
+(19, 'Úrazové pojištění', 270000, 'Každodenní úrazy', '2024-06-01', '2029-06-01');
