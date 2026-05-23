@@ -2,11 +2,10 @@
 
 namespace Controller;
 
-use DateMalformedStringException;
 use DateTime;
 use Exceptions\InsurenceException;
 use Model\InsuredPersonAdministration;
-use Model\InsurencePersonForm;
+use Model\InsuredPersonForm;
 use Model\MessageEnum;
 
 # Controller for adding or editing a single insured person.
@@ -16,37 +15,37 @@ class InsuredPersonFormController extends Controller
     {
         $insuredPersonAdministration = new InsuredPersonAdministration();
 
-        $id = null;
-        $insuredPerson = [];
+        $idInsuredPerson = null;
+        $insuredPersonDetail = [];
         $editMode = isset($_GET['edit']);
 
         if ($editMode) {
-            $id = $_GET['edit'] ? (int)$_GET['edit'] : null;
-            $insuredPerson = $insuredPersonAdministration->getInsuredPersonDetail($id);
+            $idInsuredPerson = $_GET['edit'] ? (int)$_GET['edit'] : null;
+            $insuredPersonDetail = $insuredPersonAdministration->getInsuredPersonDetail($idInsuredPerson);
 
-            if (!$insuredPerson) {
+            if (!$insuredPersonDetail) {
                 $this->redirect('insuredPerson');
             }
         }
 
         if ($_POST) {
             try {
-                $insuranceForm = new InsurencePersonForm(
-                    $_POST['name'],
-                    $_POST['surname'],
-                    new DateTime($_POST['birthdate']),
-                    $_POST['phone'],
-                    $_POST['email'],
-                    $_POST['address'],
-                    $_POST['city'],
-                    $_POST['zipCode']
+                $insuranceForm = new InsuredPersonForm(
+                    $_POST['name'] ?? '',
+                    $_POST['surname'] ?? '',
+                    new DateTime($_POST['birthdate'] ?? ''),
+                    $_POST['phone'] ?? '',
+                    $_POST['email'] ?? '',
+                    $_POST['address'] ?? '',
+                    $_POST['city'] ?? '',
+                    $_POST['zipCode'] ?? '',
                 );
 
                 $insuranceForm->allFilled();
                 $insuranceForm->birthdateIsCorrect();
 
                 if ($editMode) {
-                    $insuranceForm->editInsuredPerson($id);
+                    $insuranceForm->editInsuredPerson($idInsuredPerson);
                     $this->addMessage('Pojištěnec byl úspěšně upraven.', MessageEnum::SUCCESS);
                 } else {
                     $insuranceForm->addInsuredPerson();
@@ -58,17 +57,16 @@ class InsuredPersonFormController extends Controller
                 $this->addMessage($e->getMessage(), MessageEnum::DANGER);
             }
         }
+
         $this->header = [
-            'title' => $editMode
-                ? 'Editovat pojištěnce'
-                : 'Přidat pojištěnce',
-            'keywords' => 'pojištěnci, nový pojištěnec',
-            'description' => 'Přidání nového či úprava pojištěnce do databáze'
+            'title' => $editMode ? 'Editace pojištěnce' : 'Přidání pojištěnce',
+            'keywords' => 'pojištěnec, přidání pojištěnce, úprava pojištěnce',
+            'description' => 'Přidání nového pojištěnce či úprava pojištěnce v databázi.'
         ];
 
-        $this->data['messages'] = $this->getMessages();
-        $this->data['insuredPerson'] = $insuredPerson;
+        $this->data['insuredPerson'] = $insuredPersonDetail;
         $this->data['editMode'] = $editMode;
+        $this->data['messages'] = $this->getMessages();
 
         $this->view = 'insuredPersonForm';
     }

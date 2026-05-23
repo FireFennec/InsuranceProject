@@ -5,7 +5,7 @@ namespace Model;
 use DateTime;
 use Exceptions\InsurenceException;
 
-class InsurencePersonForm
+class InsuredPersonForm
 {
     public ?string $name;
     public ?string $surname;

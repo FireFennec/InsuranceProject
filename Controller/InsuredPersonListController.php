@@ -18,30 +18,31 @@ class InsuredPersonListController extends Controller
             $this->redirect('insuredPerson');
         }
 
-        $this->header = [
-            'title' => 'Pojištěnci',
-            'keywords' => 'pojištěnci, evidence',
-            'description' => 'Seznam pojištěnců a informace o jejich evidenci'
-        ];
-
-        $page = empty($parameters[0]) ? 1 : (int)$parameters[0];
-
+        if (isset($parameters[0]) && $parameters[0]) {
+            $page = (int)$parameters[0];
+        } else {
+            $page = 1;
+        }
         if ($page < 1) {
             $page = 1;
         }
-
         $limit = 3;
         $offset = ($page - 1) * $limit;
-
         $totalCount = $insuredPersonAdministration->getInsuredPersonCount();
         $totalPages = (int)ceil($totalCount / $limit);
 
-        $insuredPerson = $insuredPersonAdministration->getListOfInsuredPersons($limit, $offset);
+        $insuredPersonList = $insuredPersonAdministration->getListOfInsuredPersons($limit, $offset);
 
-        $this->data['insuredPersonList'] = $insuredPerson;
-        $this->data['messages'] = $this->getMessages();
+        $this->header = [
+            'title' => 'Seznam pojištěnců',
+            'keywords' => 'pojištěnci, evidence, informace',
+            'description' => 'Seznam pojištěnců a nějaké informace k nim.'
+        ];
+
+        $this->data['insuredPersonList'] = $insuredPersonList;
         $this->data['page'] = $page;
         $this->data['totalPages'] = $totalPages;
+        $this->data['messages'] = $this->getMessages();
 
         $this->view = 'insuredPersonList';
     }
