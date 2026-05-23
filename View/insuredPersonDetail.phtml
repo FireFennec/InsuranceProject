@@ -61,7 +61,7 @@
             <?php foreach ($insuranceList as $insurance) : ?>
                 <tr>
                     <td class="fw-bold align-middle">
-                        <a href="insuranceDetails/<?= $insurance['id'] ?>">
+                        <a href="insuranceDetail/<?= $insurance['id'] ?>">
                             <?= $insurance['kind_of_insurance'] ?>
                         </a>
                     </td>
@@ -73,7 +73,7 @@
                     <td>
                         <div class="mx-3">
 
-                            <a href="insuredPersonDetails/<?= $insuredPerson['id'] ?>?delete=<?= $insurance['id'] ?>"
+                            <a href="insuredPersonDetail/<?= $insuredPerson['id'] ?>?delete=<?= $insurance['id'] ?>"
                                class="btn btn-danger mx-2">
                                 Odstranit
                             </a>

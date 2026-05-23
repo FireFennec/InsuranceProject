@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use DateMalformedStringException;
 use DateTime;
 use Exceptions\InsurenceException;
 use Model\InsuredPersonAdministration;

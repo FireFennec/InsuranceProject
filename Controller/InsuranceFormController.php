@@ -55,7 +55,7 @@ class InsuranceFormController extends Controller
                     $this->addMessage('Pojištění bylo úspěšně přidáno.', MessageEnum::SUCCESS);
                 }
 
-                $this->redirect('insuredPersonDetails/' . $idInsuredPerson);
+                $this->redirect('insuredPersonDetail/' . $idInsuredPerson);
 
             } catch (InsurenceException $e) {
                 $this->addMessage($e->getMessage(), MessageEnum::DANGER);

@@ -7,7 +7,7 @@ use Model\InsuranceAdministration;
 use Model\MessageEnum;
 
 # Controller for displaying details of a single insured person.
-class InsuredPersonDetailsController extends Controller
+class InsuredPersonDetailController extends Controller
 {
     public function process(array $parameters): void
     {
@@ -38,7 +38,7 @@ class InsuredPersonDetailsController extends Controller
         if (isset($_GET['delete'])) {
             $insuranceAdministration->deleteInsurence((int)$_GET['delete']);
             $this->addMessage('Pojištění bylo úspěšně smazáno.', MessageEnum::SUCCESS);
-            $this->redirect('insuredPersonDetails/' . $id);
+            $this->redirect('insuredPersonDetail/' . $id);
         }
 
         $insuranceList = $insuranceAdministration->getListOfInsuredPersonInsurences($id, $limit, $offset);
@@ -47,6 +47,6 @@ class InsuredPersonDetailsController extends Controller
         $this->data['messages'] = $this->getMessages();
         $this->data['insuranceList'] = $insuranceList;
 
-        $this->view = 'insuredPersonDetails';
+        $this->view = 'insuredPersonDetail';
     }
 }

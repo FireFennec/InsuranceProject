@@ -5,7 +5,7 @@ namespace Controller;
 use Model\InsuredPersonAdministration;
 use Model\InsuranceAdministration;
 
-class InsuranceDetailsController extends Controller
+class InsuranceDetailController extends Controller
 {
     public function process(array $parameters): void
     {
@@ -27,6 +27,6 @@ class InsuranceDetailsController extends Controller
         $this->data['insuredPerson'] = $insuredPerson;
         $this->data['messages'] = $this->getMessages();
 
-        $this->view = 'insuranceDetails';
+        $this->view = 'insuranceDetail';
     }
 }
