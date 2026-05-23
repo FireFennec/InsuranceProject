@@ -15,7 +15,7 @@ class InsuredPersonListController extends Controller
         if (isset($_POST['delete'])) {
             $insuredPersonAdministration->deleteInsuredPerson((int)$_POST['delete']);
             $this->addMessage('Pojištěnec byl úspěšně smazán.', MessageEnum::SUCCESS);
-            $this->redirect('insuredPerson');
+            $this->redirect('insuredPersonList');
         }
 
         if (isset($parameters[0]) && $parameters[0]) {
