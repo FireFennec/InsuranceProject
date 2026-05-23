@@ -7,7 +7,7 @@ use Model\InsuranceAdministration;
 
 class InsuranceDetailsController extends Controller
 {
-    public function process(array $paramets): void
+    public function process(array $parameters): void
     {
         $insuredPersonsAdministration = new InsuredPersonsAdministration();
         $insuranceAdministration = new InsuranceAdministration();
@@ -18,7 +18,7 @@ class InsuranceDetailsController extends Controller
             'description' => 'Detaily vybraného pojištění.'
         ];
 
-        $idInsurance = empty($paramets[0]) ? null : (int)$paramets[0];
+        $idInsurance = empty($parameters[0]) ? null : (int)$parameters[0];
 
         $insurance = $insuranceAdministration->getInsuranceDetail($idInsurance);
         $insuredPerson = $insuredPersonsAdministration->getInsuredPersonDetail($insurance['id_insured_person']);

@@ -8,12 +8,12 @@ use Model\MessageEnum;
 # Controller for displaying a list of insured persons.
 class InsuredPersonsController extends Controller
 {
-    public function process(array $paramets): void
+    public function process(array $parameters): void
     {
         $insuredPersonsAdministration = new InsuredPersonsAdministration();
 
-        if (isset($_GET['delete'])) {
-            $insuredPersonsAdministration->deleteInsuredPerson((int)$_GET['delete']);
+        if (isset($_POST['delete'])) {
+            $insuredPersonsAdministration->deleteInsuredPerson((int)$_POST['delete']);
             $this->addMessage('Pojištěnec byl úspěšně smazán.', MessageEnum::SUCCESS);
             $this->redirect('insuredPersons');
         }
@@ -24,7 +24,7 @@ class InsuredPersonsController extends Controller
             'description' => 'Seznam pojištěnců a informace o jejich evidenci'
         ];
 
-        $page = empty($paramets[0]) ? 1 : (int)$paramets[0];
+        $page = empty($parameters[0]) ? 1 : (int)$parameters[0];
 
         if ($page < 1) {
             $page = 1;

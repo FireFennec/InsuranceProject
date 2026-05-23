@@ -9,7 +9,7 @@ use Model\MessageEnum;
 # Controller for displaying details of a single insured person.
 class InsuredPersonDetailsController extends Controller
 {
-    public function process(array $paramets): void
+    public function process(array $parameters): void
     {
         $insuredPersonsAdministration = new InsuredPersonsAdministration();
         $insuranceAdministration = new InsuranceAdministration();
@@ -20,7 +20,7 @@ class InsuredPersonDetailsController extends Controller
             'description' => 'Detaily vybraného pojištěnce.'
         ];
 
-        $page = empty($paramets[1]) ? 1 : (int)$paramets[1];
+        $page = empty($parameters[1]) ? 1 : (int)$parameters[1];
 
         if ($page < 1) {
             $page = 1;
@@ -29,11 +29,11 @@ class InsuredPersonDetailsController extends Controller
         $limit = 3;
         $offset = ($page - 1) * $limit;
 
-        if (empty($paramets[0])) {
+        if (empty($parameters[0])) {
             $this->redirect('insuredPersons');
         }
 
-        $id = empty($paramets[0]) ? null : (int)$paramets[0];
+        $id = empty($parameters[0]) ? null : (int)$parameters[0];
 
         if (isset($_GET['delete'])) {
             $insuranceAdministration->deleteInsurence((int)$_GET['delete']);

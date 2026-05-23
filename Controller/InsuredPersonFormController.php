@@ -11,7 +11,7 @@ use Model\MessageEnum;
 # Controller for adding or editing a single insured person.
 class InsuredPersonFormController extends Controller
 {
-    public function process(array $paramets): void
+    public function process(array $parameters): void
     {
         $insuredPersonsAdministration = new InsuredPersonsAdministration();
 

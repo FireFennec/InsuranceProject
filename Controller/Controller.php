@@ -14,7 +14,7 @@ abstract class Controller
         'description' => '',
     ];
 
-    abstract function process(array $paramets): void;
+    abstract function process(array $parameters): void;
 
     public function writeView(): void
     {

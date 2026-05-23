@@ -38,8 +38,16 @@
 
                 <td>
                     <div class="mx-3">
-                        <button class="btn btn-danger mx-2"><a href="insuredPersons?delete=<?= $insuredPerson['id'] ?>" class="text-decoration-none text-white">Odstranit</a></button>
-                        <button class="btn btn-warning"><a href="insuredPersonForm?edit=<?= $insuredPerson['id'] ?>" class="text-decoration-none text-white">Editovat</a></button>
+                        <form method="post" class="d-inline">
+                            <input type="hidden" name="delete" value="<?= $insuredPerson['id'] ?>">
+
+                            <button type="submit" class="btn btn-danger mx-2">
+                                Odstranit
+                            </button>
+                        </form>
+                        <button class="btn btn-warning">
+                            <a href="insuredPersonForm?edit=<?= $insuredPerson['id'] ?>" class="text-decoration-none text-white">Editovat</a>
+                        </button>
                     </div>
                 </td>
             </tr>

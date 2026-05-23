@@ -6,9 +6,9 @@ class DirectionController extends Controller
 {
     protected Controller $controller;
 
-    public function process(array $paramets): void
+    public function process(array $parameters): void
     {
-        $parsedUrl = $this->parseUrl($paramets[0]);
+        $parsedUrl = $this->parseUrl($parameters[0]);
 
         if (empty($parsedUrl[0])) {
             $this->redirect('clanek');

@@ -13,7 +13,7 @@ use Model\MessageEnum;
 # Controller for adding or editing a single insurance.
 class InsuranceFormController extends Controller
 {
-    public function process(array $paramets): void
+    public function process(array $parameters): void
     {
         $insurenceAdministration = new InsuranceAdministration();
         $insuredPersonsAdministration = new InsuredPersonsAdministration();
