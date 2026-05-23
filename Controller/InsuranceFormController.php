@@ -15,40 +15,40 @@ class InsuranceFormController extends Controller
 {
     public function process(array $parameters): void
     {
-        $insurenceAdministration = new InsuranceAdministration();
-        $insuredPersonAdministration = new InsuredPersonAdministration();
-
         if (!isset($_GET['idInsuredPerson']) || !is_numeric($_GET['idInsuredPerson'])) {
             $this->redirect('insuredPersonList');
         }
 
+        $insuranceAdministration = new InsuranceAdministration();
+        $insuredPersonAdministration = new InsuredPersonAdministration();
+
         $idInsuredPerson = (int)$_GET['idInsuredPerson'];
         $insuredPerson = $insuredPersonAdministration->getInsuredPersonDetail($idInsuredPerson);
 
-        $idInsurence = null;
+        $idInsurance = null;
         $insurance = [];
         $editMode = isset($_GET['edit']);
 
         if ($editMode) {
-            $idInsurence = (int)$_GET['edit'];
-            $insurance = $insurenceAdministration->getInsurence($idInsurence);
+            $idInsurance = (int)$_GET['edit'];
+            $insurance = $insuranceAdministration->getInsurence($idInsurance);
         }
 
         if ($_POST) {
             try {
                 $insuranceForm = new InsurenceForm(
                     $idInsuredPerson,
-                    $_POST['kindOfInsurance'],
-                    (int)$_POST['sum'],
-                    $_POST['subjectOfInsurance'],
-                    new DateTime($_POST['validFrom']),
-                    new DateTime($_POST['validUntil'])
+                    $_POST['kindOfInsurance'] ?? '',
+                    (int)$_POST['sum'] ?? '',
+                    $_POST['subjectOfInsurance'] ?? '',
+                    new DateTime($_POST['validFrom'] ?? ''),
+                    new DateTime($_POST['validUntil'] ?? '')
                 );
 
                 $insuranceForm->allFilled();
 
                 if ($editMode) {
-                    $insurenceAdministration->editInsurence($idInsurence, $insuranceForm);
+                    $insuranceAdministration->editInsurence($idInsurance, $insuranceForm);
                     $this->addMessage('Pojištění bylo úspěšně upraveno.', MessageEnum::SUCCESS);
                 } else {
                     $insuranceForm->addInsurence();

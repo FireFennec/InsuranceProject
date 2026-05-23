@@ -14,18 +14,26 @@ class InsuredPersonDetailController extends Controller
         $insuredPersonAdministration = new InsuredPersonAdministration();
         $insuranceAdministration = new InsuranceAdministration();
 
-        $this->header = [
-            'title' => 'Pojištěnec',
-            'keywords' => 'pojištěnci, evidence, údaje',
-            'description' => 'Detaily vybraného pojištěnce.'
-        ];
+        if (isset($parameters[0]) && $parameters[0]) {
+            $idInsuredPerson = (int)$parameters[0];
+        } else {
+            $idInsuredPerson = null;
+        }
 
-        $page = empty($parameters[1]) ? 1 : (int)$parameters[1];
+        if (isset($_GET['delete'])) {
+            $insuranceAdministration->deleteInsurence((int)$_GET['delete']);
+            $this->addMessage('Pojištění bylo úspěšně smazáno.', MessageEnum::SUCCESS);
+            $this->redirect('insuredPersonDetail/' . $idInsuredPerson);
+        }
 
+        if (isset($parameters[1]) && $parameters[1]) {
+            $page = (int)$parameters[0];
+        } else {
+            $page = 1;
+        }
         if ($page < 1) {
             $page = 1;
         }
-
         $limit = 3;
         $offset = ($page - 1) * $limit;
 
@@ -33,19 +41,17 @@ class InsuredPersonDetailController extends Controller
             $this->redirect('insuredPerson');
         }
 
-        $id = empty($parameters[0]) ? null : (int)$parameters[0];
+        $insuranceList = $insuranceAdministration->getListOfInsuredPersonInsurences($idInsuredPerson, $limit, $offset);
 
-        if (isset($_GET['delete'])) {
-            $insuranceAdministration->deleteInsurence((int)$_GET['delete']);
-            $this->addMessage('Pojištění bylo úspěšně smazáno.', MessageEnum::SUCCESS);
-            $this->redirect('insuredPersonDetail/' . $id);
-        }
+        $this->header = [
+            'title' => 'Dataily pojištěnce',
+            'keywords' => 'pojištěnci, evidence, údaje, detaily',
+            'description' => 'Detaily a možnosti úprav či mazání vybraného pojištěnce.'
+        ];
 
-        $insuranceList = $insuranceAdministration->getListOfInsuredPersonInsurences($id, $limit, $offset);
-
-        $this->data['insuredPerson'] = $insuredPersonAdministration->getInsuredPersonDetail($id);
-        $this->data['messages'] = $this->getMessages();
+        $this->data['insuredPerson'] = $insuredPersonAdministration->getInsuredPersonDetail($idInsuredPerson);
         $this->data['insuranceList'] = $insuranceList;
+        $this->data['messages'] = $this->getMessages();
 
         $this->view = 'insuredPersonDetail';
     }
