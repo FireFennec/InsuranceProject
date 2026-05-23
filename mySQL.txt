@@ -1,0 +1,26 @@
+CREATE TABLE insured_persons (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
+    birth DATE NOT NULL,
+    phone VARCHAR(30) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    address TEXT NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    zip_code VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE insurences (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_insured_person INT NOT NULL,
+    kind_of_insurance VARCHAR(100) NOT NULL,
+    sum INT NOT NULL,
+    subject_of_insurance TEXT,
+    valid_from DATE NOT NULL,
+    valid_until DATE NOT NULL,
+
+    CONSTRAINT fk_insurences_insured_person
+        FOREIGN KEY (id_insured_person)
+        REFERENCES insured_persons(id)
+        ON DELETE CASCADE
+);

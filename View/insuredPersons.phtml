@@ -1,0 +1,107 @@
+<div>
+    <h2 class="h2">Pojištěnci</h2>
+
+    <?php foreach ($messages as $message) : ?>
+        <div class="alert alert-<?= $message['type'] ?>" role="alert">
+            <?= $message['message'] ?>
+        </div>
+    <?php endforeach; ?>
+
+    <div class="text-center">
+        <button type="button" class="btn btn-primary my-1">
+            <a href="insuredPersonForm" class="nav-link">Nový pojištěnec</a>
+        </button>
+    </div>
+
+    <table class="table table-border-custom my-4">
+
+        <thead class="fw-bold">
+        <tr>
+            <th>Jmeno a příjmení</th>
+            <th>Bydliště</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php foreach ($insuredPersons as $insuredPerson) : ?>
+            <tr>
+                <td class="fw-bold align-middle">
+                    <a href="insuredPersonDetails/<?= $insuredPerson['id'] ?>">
+                        <?= $insuredPerson['name'] . ' ' . $insuredPerson['surname'] ?>
+                    </a>
+                </td>
+
+                <td class="align-middle">
+                    <?= $insuredPerson['address'] ?>
+                </td>
+
+                <td>
+                    <div class="mx-3">
+                        <button class="btn btn-danger mx-2"><a href="insuredPersons?delete=<?= $insuredPerson['id'] ?>" class="text-decoration-none text-white">Odstranit</a></button>
+                        <button class="btn btn-warning"><a href="insuredPersonForm?edit=<?= $insuredPerson['id'] ?>" class="text-decoration-none text-white">Editovat</a></button>
+                    </div>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+
+    </table>
+
+    <nav>
+        <ul class="pagination justify-content-center">
+
+            <?php if ($page > 1) : ?>
+                <li class="page-item">
+                    <a class="page-link" href="insuredPersons/<?= $page - 1 ?>">Předchozí</a>
+                </li>
+            <?php endif; ?>
+
+            <?php
+            $start = max(1, $page - 5);
+            $end = min($totalPages, $page + 5);
+            ?>
+
+            <?php if ($start > 1) : ?>
+                <li class="page-item">
+                    <a class="page-link" href="insuredPersons/1">1</a>
+                </li>
+
+                <?php if ($start > 2) : ?>
+                    <li class="page-item disabled">
+                        <span class="page-link">...</span>
+                    </li>
+                <?php endif; ?>
+            <?php endif; ?>
+
+            <?php for ($i = $start; $i <= $end; $i++) : ?>
+                <li class="page-item <?= $i === $page ? 'active' : '' ?>">
+                    <a class="page-link" href="insuredPersons/<?= $i ?>">
+                        <?= $i ?>
+                    </a>
+                </li>
+            <?php endfor; ?>
+
+            <?php if ($end < $totalPages) : ?>
+                <?php if ($end < $totalPages - 1) : ?>
+                    <li class="page-item disabled">
+                        <span class="page-link">...</span>
+                    </li>
+                <?php endif; ?>
+
+                <li class="page-item">
+                    <a class="page-link" href="insuredPersons/<?= $totalPages ?>">
+                        <?= $totalPages ?>
+                    </a>
+                </li>
+            <?php endif; ?>
+
+            <?php if ($page < $totalPages) : ?>
+                <li class="page-item">
+                    <a class="page-link" href="insuredPersons/<?= $page + 1 ?>">Další</a>
+                </li>
+            <?php endif; ?>
+
+        </ul>
+    </nav>
+</div>

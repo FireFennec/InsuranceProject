@@ -1,0 +1,32 @@
+article {
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 50px;
+}
+
+footer {
+    background: #343a40;
+    color: white;
+    padding: 20px;
+}
+
+.nav-menu {
+    background-color: #343a40;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link:hover {
+    color: #FFFF00 !important;
+}
+
+.table-border-custom {
+    border: 2px solid black !important;
+}
+
+.table-border-custom th,
+.table-border-custom td {
+    border: 1px solid black !important;
+}

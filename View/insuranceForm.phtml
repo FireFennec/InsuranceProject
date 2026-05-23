@@ -1,0 +1,61 @@
+<h2 class="h2">Přidat pojištění k <?= $insuredPerson['name'] ?? '' ?> <?= $insuredPerson['surname'] ?? '' ?></h2>
+
+<?php foreach ($messages as $message) : ?>
+    <div class="alert alert-<?= $message['type'] ?>" role="alert">
+        <?= $message['message'] ?>
+    </div>
+<?php endforeach; ?>
+
+<div class="container-fluid my-5">
+    <form method="post">
+        <div class="row align-items-center">
+
+            <div class="col-1"></div>
+
+            <div class="col-12">
+                <div class="row mb-3">
+                    <div class="col-8">
+                        <label class="form-label" for="kindOfInsurance">Pojištění</label>
+                        <select name="kindOfInsurance" id="kindOfInsurance" class="form-select">
+                            <?php foreach ($insurenceTypes as $type): ?>
+                                <option value="<?= $type->value ?>"
+                                    <?= (($insurance['kind_of_insurance'] ?? '') === $type->value) ? 'selected' : '' ?>>
+                                    <?= $type->value ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <label class="form-label" for="sum">Částka</label>
+                        <input name="sum" type="number" class="form-control" id="sum" placeholder="100000" value="<?= $insurance['sum'] ?? '' ?>">
+                    </div>
+
+                    <div class="col-4">
+                        <label class="form-label" for="subjectOfInsurance">Předmět pojištění</label>
+                        <input name="subjectOfInsurance" type="text" class="form-control" id="subjectOfInsurance" placeholder="Byt" value="<?= $insurance['subject_of_insurance'] ?? '' ?>">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <label class="form-label" for="validFrom">Platnost od</label>
+                        <input name="validFrom" type="date" class="form-control" id="validFrom" value="<?= $insurance['valid_from'] ?? '' ?>">
+                    </div>
+
+                    <div class="col-4">
+                        <label class="form-label" for="validUntil">Platnost do</label>
+                        <input name="validUntil" type="date" class="form-control" id="validUntil" value="<?= $insurance['valid_until'] ?? '' ?>">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <button type="submit" class="btn btn-primary col-1">
+                <?= $editMode ? 'Upravit' : 'Uložit' ?>
+            </button>
+        </div>
+    </form>
+</div>

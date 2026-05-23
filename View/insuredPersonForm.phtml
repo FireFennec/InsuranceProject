@@ -1,0 +1,64 @@
+<h2 class="h2">Nový pojištěnec</h2>
+<div class="container-fluid my-5">
+    <form method="post">
+        <div class="row align-items-center">
+
+            <div class="col-1"></div>
+
+            <div class="col-12">
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <label class="form-label" for="name">Jméno</label>
+                        <input name="name" type="text" class="form-control" id="name" placeholder="Jan" value="<?= $insuredPerson['name'] ?? '' ?>">
+                    </div>
+
+                    <div class="col-4">
+                        <label class="form-label" for="surname">Příjmení</label>
+                        <input name="surname" type="text" class="form-control" id="surname" placeholder="Novák" value="<?= $insuredPerson['surname'] ?? '' ?>">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <label class="form-label" for="birth">Datum narození</label>
+                        <input name="birthdate" type="date" class="form-control" id="birth" value="<?= $insuredPerson['birth'] ?? '' ?>">
+                    </div>
+
+                    <div class="col-4">
+                        <label class="form-label" for="phone">Telefon</label>
+                        <input name="phone" type="text" class="form-control" id="phone" placeholder="731 584 972" value="<?= $insuredPerson['phone'] ?? '' ?>">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <label class="form-label" for="email">Email</label>
+                        <input name="email" type="email" class="form-control" id="email" placeholder="jannovak88@seznam.cz" value="<?= $insuredPerson['email'] ?? '' ?>">
+                    </div>
+
+                    <div class="col-4">
+                        <label class="form-label" for="address">Ulice a číslo popisné</label>
+                        <input name="address" type="text" class="form-control" id="address" placeholder="Ve Svahu 3" value="<?= $insuredPerson['address'] ?? '' ?>">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <label class="form-label" for="city">Město</label>
+                        <input name="city" type="text" class="form-control" id="city" placeholder="Praha 1" value="<?= $insuredPerson['city'] ?? '' ?>">
+                    </div>
+
+                    <div class="col-4">
+                        <label class="form-label" for="psc">PSČ</label>
+                        <input name="zipCode" type="text" class="form-control" id="psc" placeholder="100 00" value="<?= $insuredPerson['zip_code'] ?? '' ?>">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <button type="submit" class="btn btn-primary col-1">
+                <?= $editMode ? 'Upravit' : 'Uložit' ?>
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,56 @@
+<div>
+    <?php foreach ($messages as $message) : ?>
+        <div class="alert alert-<?= $message['type'] ?>" role="alert">
+            <?= $message['message'] ?>
+        </div>
+    <?php endforeach; ?>
+
+    <div class="row align-items-start">
+        <div class="mx-4 text-center">
+
+            <h3 class="h3">
+                Pojištění: <?= $insurance['kind_of_insurance'] ?>
+            </h3>
+
+            <div class="row my-2 py-4">
+
+                <div class="col-4">
+                    Pojištění pro:
+                    <?= $insuredPerson['name'] ?>
+                    <?= $insuredPerson['surname'] ?>
+                </div>
+
+                <div class="col-4">
+                    Typ pojištění:
+                    <?= $insurance['kind_of_insurance'] ?>
+                </div>
+
+                <div class="col-4">
+                    Částka:
+                    <?= $insurance['sum'] ?>
+                </div>
+
+            </div>
+
+            <div class="row my-3">
+
+                <div class="col-4">
+                    Předmět pojištění:
+                    <?= $insurance['subject_of_insurance'] ?>
+                </div>
+
+                <div class="col-4">
+                    Platnost od:
+                    <?= $insurance['valid_from'] ?>
+                </div>
+
+                <div class="col-4">
+                    Platnost do:
+                    <?= $insurance['valid_until'] ?>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
