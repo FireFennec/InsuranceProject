@@ -25,4 +25,31 @@ class InsuredPersonAdministration
     {
         Db::query('DELETE FROM insured_persons WHERE id = ?', [$id]);
     }
+
+    public function editInsuredPerson(int $id, InsuredPersonForm $insuredPersonForm): void
+    {
+        Db::query(
+            'UPDATE insured_persons
+         SET name = ?,
+             surname = ?,
+             birth = ?,
+             phone = ?,
+             email = ?,
+             address = ?,
+             city = ?,
+             zip_code = ?
+         WHERE id = ?',
+            [
+                $insuredPersonForm->name,
+                $insuredPersonForm->surname,
+                $insuredPersonForm->birthdate->format('Y-m-d'),
+                $insuredPersonForm->phone,
+                $insuredPersonForm->email,
+                $insuredPersonForm->address,
+                $insuredPersonForm->city,
+                $insuredPersonForm->zipCode,
+                $id
+            ]
+        );
+    }
 }

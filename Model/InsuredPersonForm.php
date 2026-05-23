@@ -82,31 +82,4 @@ class InsuredPersonForm
             'zip_code' => $this->zipCode,
         ]);
     }
-
-    public function editInsuredPerson(int $id): void
-    {
-        Db::query(
-                'UPDATE insured_persons
-                SET name = ?,
-                     surname = ?,
-                     birth = ?,
-                     phone = ?,
-                     email = ?,
-                     address = ?,
-                     city = ?,
-                     zip_code = ?
-                 WHERE id = ?',
-            [
-                $this->name,
-                $this->surname,
-                $this->birthdate->format('Y-m-d'),
-                $this->phone,
-                $this->email,
-                $this->address,
-                $this->city,
-                $this->zipCode,
-                $id
-            ]
-        );
-    }
 }

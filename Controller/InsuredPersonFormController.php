@@ -45,7 +45,7 @@ class InsuredPersonFormController extends Controller
                 $insuranceForm->birthdateIsCorrect();
 
                 if ($editMode) {
-                    $insuranceForm->editInsuredPerson($idInsuredPerson);
+                    $insuredPersonAdministration->editInsuredPerson($idInsuredPerson, $insuranceForm);
                     $this->addMessage('Pojištěnec byl úspěšně upraven.', MessageEnum::SUCCESS);
                 } else {
                     $insuranceForm->addInsuredPerson();
