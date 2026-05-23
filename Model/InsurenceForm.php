@@ -46,9 +46,9 @@ class InsurenceForm
         }
     }
 
-    public function addInsurence(): void
+    public function addInsurance(): void
     {
-        Db::insert('insurences', [
+        Db::insert('insurances', [
             'id_insured_person' => $this->idInsuredPerson,
             'kind_of_insurance' => $this->kindOfInsurance,
             'sum' => $this->sum,

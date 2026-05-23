@@ -49,14 +49,14 @@ class InsuranceAdministration
     public function getInsurence(int $id): array|bool
     {
         return Db::findOne(
-            'SELECT * FROM insurences WHERE id = ?',
+            'SELECT * FROM insurances WHERE id = ?',
             [$id]
         );
     }
 
-    public function deleteInsurence(int $id): void
+    public function deleteInsurance(int $id): void
     {
-        Db::query('DELETE FROM insurences WHERE id = ?', [$id]);
+        Db::query('DELETE FROM insurances WHERE id = ?', [$id]);
     }
 
     public function getInsuranceCountByInsuredPerson(int $idInsuredPerson): int

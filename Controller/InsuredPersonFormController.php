@@ -52,7 +52,7 @@ class InsuredPersonFormController extends Controller
                     $this->addMessage('Pojištěnec byl úspěšně přidán.', MessageEnum::SUCCESS);
                 }
 
-                $this->redirect('insuredPerson');
+                $this->redirect('insuredPersonDetail/' . $idInsuredPerson);
             } catch (InsurenceException $e) {
                 $this->addMessage($e->getMessage(), MessageEnum::DANGER);
             }

@@ -51,7 +51,7 @@ class InsuranceFormController extends Controller
                     $insuranceAdministration->editInsurence($idInsurance, $insuranceForm);
                     $this->addMessage('Pojištění bylo úspěšně upraveno.', MessageEnum::SUCCESS);
                 } else {
-                    $insuranceForm->addInsurence();
+                    $insuranceForm->addInsurance();
                     $this->addMessage('Pojištění bylo úspěšně přidáno.', MessageEnum::SUCCESS);
                 }
 

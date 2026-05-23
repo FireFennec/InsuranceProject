@@ -21,7 +21,7 @@ class InsuredPersonDetailController extends Controller
         }
 
         if (isset($_GET['delete'])) {
-            $insuranceAdministration->deleteInsurence((int)$_GET['delete']);
+            $insuranceAdministration->deleteInsurance((int)$_GET['delete']);
             $this->addMessage('Pojištění bylo úspěšně smazáno.', MessageEnum::SUCCESS);
             $this->redirect('insuredPersonDetail/' . $idInsuredPerson);
         }
