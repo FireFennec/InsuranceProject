@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-use Model\InsuredPersonsAdministration;
+use Model\InsuredPersonAdministration;
 use Model\InsuranceAdministration;
 use Model\MessageEnum;
 
@@ -11,7 +11,7 @@ class InsuredPersonDetailsController extends Controller
 {
     public function process(array $parameters): void
     {
-        $insuredPersonsAdministration = new InsuredPersonsAdministration();
+        $insuredPersonAdministration = new InsuredPersonAdministration();
         $insuranceAdministration = new InsuranceAdministration();
 
         $this->header = [
@@ -30,7 +30,7 @@ class InsuredPersonDetailsController extends Controller
         $offset = ($page - 1) * $limit;
 
         if (empty($parameters[0])) {
-            $this->redirect('insuredPersons');
+            $this->redirect('insuredPerson');
         }
 
         $id = empty($parameters[0]) ? null : (int)$parameters[0];
@@ -43,7 +43,7 @@ class InsuredPersonDetailsController extends Controller
 
         $insuranceList = $insuranceAdministration->getListOfInsuredPersonInsurences($id, $limit, $offset);
 
-        $this->data['insuredPerson'] = $insuredPersonsAdministration->getInsuredPersonDetail($id);
+        $this->data['insuredPerson'] = $insuredPersonAdministration->getInsuredPersonDetail($id);
         $this->data['messages'] = $this->getMessages();
         $this->data['insuranceList'] = $insuranceList;
 

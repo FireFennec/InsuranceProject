@@ -4,7 +4,7 @@ namespace Controller;
 
 use DateTime;
 use Exceptions\InsurenceException;
-use Model\InsuredPersonsAdministration;
+use Model\InsuredPersonAdministration;
 use Model\InsurencePersonForm;
 use Model\MessageEnum;
 
@@ -13,7 +13,7 @@ class InsuredPersonFormController extends Controller
 {
     public function process(array $parameters): void
     {
-        $insuredPersonsAdministration = new InsuredPersonsAdministration();
+        $insuredPersonAdministration = new InsuredPersonAdministration();
 
         $id = null;
         $insuredPerson = [];
@@ -21,10 +21,10 @@ class InsuredPersonFormController extends Controller
 
         if ($editMode) {
             $id = $_GET['edit'] ? (int)$_GET['edit'] : null;
-            $insuredPerson = $insuredPersonsAdministration->getInsuredPersonDetail($id);
+            $insuredPerson = $insuredPersonAdministration->getInsuredPersonDetail($id);
 
             if (!$insuredPerson) {
-                $this->redirect('insuredPersons');
+                $this->redirect('insuredPerson');
             }
         }
 
@@ -52,7 +52,7 @@ class InsuredPersonFormController extends Controller
                     $this->addMessage('Pojištěnec byl úspěšně přidán.', MessageEnum::SUCCESS);
                 }
 
-                $this->redirect('insuredPersons');
+                $this->redirect('insuredPerson');
             } catch (InsurenceException $e) {
                 $this->addMessage($e->getMessage(), MessageEnum::DANGER);
             }

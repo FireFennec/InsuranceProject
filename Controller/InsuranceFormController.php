@@ -4,7 +4,7 @@ namespace Controller;
 
 use DateTime;
 use Exceptions\InsurenceException;
-use Model\InsuredPersonsAdministration;
+use Model\InsuredPersonAdministration;
 use Model\InsuranceAdministration;
 use Model\InsurenceForm;
 use Model\InsurenceTypeEnum;
@@ -16,14 +16,14 @@ class InsuranceFormController extends Controller
     public function process(array $parameters): void
     {
         $insurenceAdministration = new InsuranceAdministration();
-        $insuredPersonsAdministration = new InsuredPersonsAdministration();
+        $insuredPersonAdministration = new InsuredPersonAdministration();
 
         if (!isset($_GET['idInsuredPerson']) || !is_numeric($_GET['idInsuredPerson'])) {
-            $this->redirect('insuredPersons');
+            $this->redirect('insuredPersonList');
         }
 
         $idInsuredPerson = (int)$_GET['idInsuredPerson'];
-        $insuredPerson = $insuredPersonsAdministration->getInsuredPersonDetail($idInsuredPerson);
+        $insuredPerson = $insuredPersonAdministration->getInsuredPersonDetail($idInsuredPerson);
 
         $idInsurence = null;
         $insurance = [];

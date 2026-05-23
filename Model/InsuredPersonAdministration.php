@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class InsuredPersonsAdministration
+class InsuredPersonAdministration
 {
     public function getListOfInsuredPersons(int $limit, int $offset): array|bool
     {
@@ -14,7 +14,7 @@ class InsuredPersonsAdministration
         return  Db::findOne('SELECT * FROM insured_persons WHERE id = ?', [$id]);
     }
 
-    public function getInsuredPersonsCount(): int
+    public function getInsuredPersonCount(): int
     {
         $result = Db::findOne('SELECT COUNT(*) AS count FROM insured_persons');
 

@@ -2,14 +2,14 @@
 
 namespace Controller;
 
-use Model\InsuredPersonsAdministration;
+use Model\InsuredPersonAdministration;
 use Model\InsuranceAdministration;
 
 class InsuranceDetailsController extends Controller
 {
     public function process(array $parameters): void
     {
-        $insuredPersonsAdministration = new InsuredPersonsAdministration();
+        $insuredPersonAdministration = new InsuredPersonAdministration();
         $insuranceAdministration = new InsuranceAdministration();
 
         $this->header = [
@@ -21,7 +21,7 @@ class InsuranceDetailsController extends Controller
         $idInsurance = empty($parameters[0]) ? null : (int)$parameters[0];
 
         $insurance = $insuranceAdministration->getInsuranceDetail($idInsurance);
-        $insuredPerson = $insuredPersonsAdministration->getInsuredPersonDetail($insurance['id_insured_person']);
+        $insuredPerson = $insuredPersonAdministration->getInsuredPersonDetail($insurance['id_insured_person']);
 
         $this->data['insurance'] = $insurance;
         $this->data['insuredPerson'] = $insuredPerson;

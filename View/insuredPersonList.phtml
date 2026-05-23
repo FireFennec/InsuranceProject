@@ -24,7 +24,7 @@
         </thead>
 
         <tbody>
-        <?php foreach ($insuredPersons as $insuredPerson) : ?>
+        <?php foreach ($insuredPersonList as $insuredPerson) : ?>
             <tr>
                 <td class="fw-bold align-middle">
                     <a href="insuredPersonDetails/<?= $insuredPerson['id'] ?>">
@@ -61,7 +61,7 @@
 
             <?php if ($page > 1) : ?>
                 <li class="page-item">
-                    <a class="page-link" href="insuredPersons/<?= $page - 1 ?>">Předchozí</a>
+                    <a class="page-link" href="insuredPersonList/<?= $page - 1 ?>">Předchozí</a>
                 </li>
             <?php endif; ?>
 
@@ -72,7 +72,7 @@
 
             <?php if ($start > 1) : ?>
                 <li class="page-item">
-                    <a class="page-link" href="insuredPersons/1">1</a>
+                    <a class="page-link" href="insuredPersonList/1">1</a>
                 </li>
 
                 <?php if ($start > 2) : ?>
@@ -84,7 +84,7 @@
 
             <?php for ($i = $start; $i <= $end; $i++) : ?>
                 <li class="page-item <?= $i === $page ? 'active' : '' ?>">
-                    <a class="page-link" href="insuredPersons/<?= $i ?>">
+                    <a class="page-link" href="insuredPersonList/<?= $i ?>">
                         <?= $i ?>
                     </a>
                 </li>
@@ -98,7 +98,7 @@
                 <?php endif; ?>
 
                 <li class="page-item">
-                    <a class="page-link" href="insuredPersons/<?= $totalPages ?>">
+                    <a class="page-link" href="insuredPersonList/<?= $totalPages ?>">
                         <?= $totalPages ?>
                     </a>
                 </li>
@@ -106,7 +106,7 @@
 
             <?php if ($page < $totalPages) : ?>
                 <li class="page-item">
-                    <a class="page-link" href="insuredPersons/<?= $page + 1 ?>">Další</a>
+                    <a class="page-link" href="insuredPersonList/<?= $page + 1 ?>">Další</a>
                 </li>
             <?php endif; ?>
 
