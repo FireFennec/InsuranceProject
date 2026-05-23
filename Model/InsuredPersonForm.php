@@ -68,18 +68,4 @@ class InsuredPersonForm
             );
         }
     }
-
-    public function addInsuredPerson(): void
-    {
-        Db::insert('insured_persons', [
-            'name' => $this->name,
-            'surname' => $this->surname,
-            'birth' => $this->birthdate->format('Y-m-d'),
-            'phone' => $this->phone,
-            'email' => $this->email,
-            'address' => $this->address,
-            'city' => $this->city,
-            'zip_code' => $this->zipCode,
-        ]);
-    }
 }

@@ -48,7 +48,7 @@ class InsuredPersonFormController extends Controller
                     $insuredPersonAdministration->editInsuredPerson($idInsuredPerson, $insuranceForm);
                     $this->addMessage('Pojištěnec byl úspěšně upraven.', MessageEnum::SUCCESS);
                 } else {
-                    $insuranceForm->addInsuredPerson();
+                    $insuredPersonAdministration->addInsuredPerson($insuranceForm);
                     $this->addMessage('Pojištěnec byl úspěšně přidán.', MessageEnum::SUCCESS);
                 }
 

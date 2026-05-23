@@ -52,4 +52,18 @@ class InsuredPersonAdministration
             ]
         );
     }
+
+    public function addInsuredPerson(InsuredPersonForm $insuredPersonForm): void
+    {
+        Db::insert('insured_persons', [
+            'name' => $insuredPersonForm->name,
+            'surname' => $insuredPersonForm->surname,
+            'birth' => $insuredPersonForm->birthdate->format('Y-m-d'),
+            'phone' => $insuredPersonForm->phone,
+            'email' => $insuredPersonForm->email,
+            'address' => $insuredPersonForm->address,
+            'city' => $insuredPersonForm->city,
+            'zip_code' => $insuredPersonForm->zipCode,
+        ]);
+    }
 }
