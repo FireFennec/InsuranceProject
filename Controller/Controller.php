@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\MessageEnum;
+use Model\UserAdministration;
 
 abstract class Controller
 {
@@ -47,6 +48,16 @@ abstract class Controller
             return $messages;
         } else {
             return [];
+        }
+    }
+
+    public function verifyUser(bool $admin = false): void
+    {
+        $userAdministration = new UserAdministration();
+        $user = $userAdministration->getUser();
+        if (!$user || ($admin && !$user['admin'])) {
+            $this->addMessage('Nedostatečná oprávnění', MessageEnum::DANGER);
+            $this->redirect('login');
         }
     }
 }

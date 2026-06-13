@@ -25,6 +25,13 @@ CREATE TABLE insurances (
         ON DELETE CASCADE
 );
 
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    admin TINYINT(1) NOT NULL DEFAULT 0
+);
+
 Testovací data:
 INSERT INTO insured_persons 
 (name, surname, birth, phone, email, address, city, zip_code)
