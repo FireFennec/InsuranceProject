@@ -16,39 +16,43 @@
         <nav class="navbar navbar-expand-lg navbar-dark nav-menu">
             <div class="navbar-brand mx-4">PojištěníApp</div>
 
-            <ul class="nav mx-5">
-                <li class="nav-item">
-                    <a href="insuredPersonList" class="nav-link">Pojištěnci</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">O aplikaci...</a>
-                </li>
-
-                <?php if ($user): ?>
-                    <li class="nav-item">
-                        <a href="administration" class="nav-link">Administrace účtu</a>
+            <div class="d-flex justify-content-between w-100">
+                <ul class="navbar-nav mx-4">
+                    <li class="nav-item mx-3">
+                        <a href="insuredPersonList" class="nav-link">Pojištěnci</a>
                     </li>
-                <?php endif; ?>
 
-                <?php if (!$user): ?>
-                    <li class="nav-item">
-                        <a href="registration" class="nav-link">Registration</a>
+                    <li class="nav-item mx-3">
+                        <a href="#" class="nav-link">O aplikaci...</a>
                     </li>
-                <?php endif; ?>
+                </ul>
 
-                <?php if (!$user): ?>
-                    <li class="nav-item">
-                        <a href="login" class="nav-link">Přihlášení</a>
-                    </li>
-                <?php endif; ?>
+                <ul class="navbar-nav mx-4">
+                    <?php if ($user): ?>
+                        <li class="nav-item mx-3">
+                            <a href="administration" class="nav-link">Administrace účtu</a>
+                        </li>
+                    <?php endif; ?>
 
-                <?php if ($user): ?>
-                    <li class="nav-item">
-                        <a href="administration/logout" class="nav-link">Odhlásit se</a>
-                    </li>
-                <?php endif; ?>
-            </ul>
+                    <?php if (!$user): ?>
+                        <li class="nav-item mx-3">
+                            <a href="registration" class="nav-link">Registration</a>
+                        </li>
+                    <?php endif; ?>
+
+                    <?php if (!$user): ?>
+                        <li class="nav-item mx-3">
+                            <a href="login" class="nav-link">Přihlášení</a>
+                        </li>
+                    <?php endif; ?>
+
+                    <?php if ($user): ?>
+                        <li class="nav-item mx-3">
+                            <a href="administration/logout" class="nav-link">Odhlásit se</a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </div>
         </nav>
     </header>
 
