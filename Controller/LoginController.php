@@ -6,7 +6,7 @@ use Exceptions\UserException;
 use Model\MessageEnum;
 use Model\UserAdministration;
 
-class RegistrationController extends Controller
+class LoginController extends Controller
 {
     public function process(array $parameters): void
     {
@@ -17,10 +17,8 @@ class RegistrationController extends Controller
 
         if ($_POST) {
             try {
-                $userAdministration = new UserAdministration();
-                $userAdministration->register($_POST['name'], $_POST['password'], $_POST['password_repeat'], $_POST['year']);
                 $userAdministration->login($_POST['name'], $_POST['password']);
-                $this->addMessage('Byl jste úspěšně zaregistrován.', MessageEnum::SUCCESS);
+                $this->addMessage('Byl jste úspěšně přihlášen.', MessageEnum::SUCCESS);
                 $this->redirect('insuredPersonList');
             } catch (UserException $error) {
                 $this->addMessage($error->getMessage(), MessageEnum::DANGER);
@@ -28,12 +26,11 @@ class RegistrationController extends Controller
         }
 
         $this->header = [
-            'title' => 'Registrace',
-            'keywords' => 'registrace, účet',
-            'description' => 'Registrace uživatele do systému.'
+            'title' => 'Přihlášení',
+            'keywords' => 'přihlášení, účet',
+            'description' => 'Přihlášení uživatele do systému.'
         ];
         $this->data['messages'] = $this->getMessages();
-
-        $this->view = 'registration';
+        $this->view = 'login';
     }
 }

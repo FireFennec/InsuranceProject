@@ -1,0 +1,7 @@
+<p>Vítejte v administraci, jste přihlášeni jako <?= $name ?></p>
+
+<?php if (!$admin) : ?>
+    <p>Nemáte administrátorská oprávnění, požádejte administrátora webu, aby vám je přidělil.</p>
+<?php endif ?>
+
+<h2><a href="administration/logout">Odhlásit</a></h2>

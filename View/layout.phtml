@@ -25,9 +25,29 @@
                     <a href="#" class="nav-link">O aplikaci...</a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="registration" class="nav-link">Registration</a>
-                </li>
+                <?php if ($user): ?>
+                    <li class="nav-item">
+                        <a href="administration" class="nav-link">Administrace účtu</a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (!$user): ?>
+                    <li class="nav-item">
+                        <a href="registration" class="nav-link">Registration</a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (!$user): ?>
+                    <li class="nav-item">
+                        <a href="login" class="nav-link">Přihlášení</a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($user): ?>
+                    <li class="nav-item">
+                        <a href="administration/logout" class="nav-link">Odhlásit se</a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>

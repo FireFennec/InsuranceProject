@@ -7,12 +7,21 @@ use Exceptions\InsurenceException;
 use Model\InsuredPersonAdministration;
 use Model\InsuredPersonForm;
 use Model\MessageEnum;
+use Model\UserAdministration;
 
 # Controller for adding or editing a single insured person.
 class InsuredPersonFormController extends Controller
 {
     public function process(array $parameters): void
     {
+        $userAdministration = new UserAdministration();
+        if (!$userAdministration->getUser()) {
+            $this->redirect('insuredPersonList');
+        }
+        if (!$userAdministration->getUser()['admin']) {
+            $this->redirect('insuredPersonList');
+        }
+
         $insuredPersonAdministration = new InsuredPersonAdministration();
 
         $idInsuredPerson = null;

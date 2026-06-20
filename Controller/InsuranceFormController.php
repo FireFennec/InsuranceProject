@@ -9,12 +9,21 @@ use Model\InsuranceAdministration;
 use Model\InsurenceForm;
 use Model\InsurenceTypeEnum;
 use Model\MessageEnum;
+use Model\UserAdministration;
 
 # Controller for adding or editing a single insurance.
 class InsuranceFormController extends Controller
 {
     public function process(array $parameters): void
     {
+        $user = $this->getUser();
+        if (!$user) {
+            $this->redirect('insuredPersonList');
+        }
+        if (!$user['admin']) {
+            $this->redirect('insuredPersonList');
+        }
+
         if (!isset($_GET['idInsuredPerson']) || !is_numeric($_GET['idInsuredPerson'])) {
             $this->redirect('insuredPersonList');
         }

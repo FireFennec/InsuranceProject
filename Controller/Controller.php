@@ -17,6 +17,12 @@ abstract class Controller
 
     abstract function process(array $parameters): void;
 
+    public function __construct()
+    {
+        $userAdministration = new UserAdministration();
+        $this->data['user'] = $userAdministration->getUser();
+    }
+
     public function writeView(): void
     {
         if ($this->view) {
@@ -38,6 +44,12 @@ abstract class Controller
             'message' => $message,
             'type' => $type->value,
         ];
+    }
+
+    protected function getUser(): ?array
+    {
+        $userAdministration = new UserAdministration();
+        return $userAdministration->getUser();
     }
 
     public function getMessages(): array
