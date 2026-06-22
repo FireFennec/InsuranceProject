@@ -32,7 +32,6 @@ CREATE TABLE users (
     admin TINYINT(1) NOT NULL DEFAULT 0
 );
 
-Testovací data:
 INSERT INTO insured_persons 
 (name, surname, birth, phone, email, address, city, zip_code)
 VALUES
@@ -138,7 +137,7 @@ VALUES
 (12, 'Životní pojištění', 560000, 'Život a zdraví', '2021-11-11', '2041-11-11'),
 (14, 'Pojištění vozidla', 520000, 'Audi Q5', '2026-01-01', '2027-01-01'),
 (16, 'Cestovní pojištění', 175000, 'Asijský okruh', '2026-06-10', '2026-07-01'),
-(18, 'Pojištění nemovitosti', 6100000, 'Moderní vila', '2020-05-05', '2035-05-05');
+(18, 'Pojištění nemovitosti', 6100000, 'Moderní vila', '2020-05-05', '2035-05-05'),
 (1, 'Pojištění domácnosti', 540000, 'Byt v centru Prahy', '2024-02-01', '2029-02-01'),
 (2, 'Cestovní pojištění', 160000, 'Dovolená v Thajsku', '2026-02-15', '2026-03-01'),
 (3, 'Pojištění vozidla', 310000, 'Renault Megane', '2025-05-01', '2026-05-01'),

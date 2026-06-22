@@ -7,7 +7,7 @@
         </div>
     <?php endforeach; ?>
 
-    <?php if ($user['admin']): ?>
+    <?php if (isset($user['admin']) && $user['admin']): ?>
         <div class="text-center">
             <button type="button" class="btn btn-primary my-1">
                 <a href="insuredPersonForm" class="nav-link">Nový pojištěnec</a>
@@ -21,7 +21,7 @@
         <tr>
             <th>Jmeno a příjmení</th>
             <th>Bydliště</th>
-            <?php if ($user['admin']): ?>
+            <?php if (isset($user['admin']) && $user['admin']): ?>
                 <th></th>
             <?php endif; ?>
         </tr>
@@ -40,7 +40,7 @@
                     <?= $insuredPerson['address'] ?>
                 </td>
 
-                <?php if ($user['admin']): ?>
+                <?php if (isset($user['admin']) && $user['admin']): ?>
                     <td>
                         <div class="mx-3">
                             <form method="post" class="d-inline">
