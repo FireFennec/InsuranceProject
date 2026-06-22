@@ -39,10 +39,13 @@ class InsuredPersonFormController extends Controller
 
         if ($_POST) {
             try {
+                $birthday = !empty($_POST['birthdate'])
+                    ? new DateTime($_POST['birthdate'])
+                    : null;
                 $insuranceForm = new InsuredPersonForm(
                     $_POST['name'] ?? '',
                     $_POST['surname'] ?? '',
-                    new DateTime($_POST['birthdate'] ?? ''),
+                    $birthday,
                     $_POST['phone'] ?? '',
                     $_POST['email'] ?? '',
                     $_POST['address'] ?? '',

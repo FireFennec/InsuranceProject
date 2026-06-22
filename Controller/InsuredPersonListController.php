@@ -13,6 +13,13 @@ class InsuredPersonListController extends Controller
         $insuredPersonAdministration = new InsuredPersonAdministration();
 
         if (isset($_POST['delete'])) {
+            $user = $this->getUser();
+            if (!$user) {
+                $this->redirect('insuredPersonList');
+            }
+            if (!$user['admin']) {
+                $this->redirect('insuredPersonList');
+            }
             $insuredPersonAdministration->deleteInsuredPerson((int)$_POST['delete']);
             $this->addMessage('Pojištěnec byl úspěšně smazán.', MessageEnum::SUCCESS);
             $this->redirect('insuredPersonList');

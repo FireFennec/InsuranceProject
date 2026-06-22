@@ -44,14 +44,22 @@ class InsuranceFormController extends Controller
         }
 
         if ($_POST) {
+
             try {
+                $validFrom = !empty($_POST['validFrom'])
+                    ? new DateTime($_POST['validFrom'])
+                    : null;
+
+                $validUntil = !empty($_POST['validUntil'])
+                    ? new DateTime($_POST['validUntil'])
+                    : null;
                 $insuranceForm = new InsurenceForm(
                     $idInsuredPerson,
                     $_POST['kindOfInsurance'] ?? '',
                     (int)$_POST['sum'] ?? '',
                     $_POST['subjectOfInsurance'] ?? '',
-                    new DateTime($_POST['validFrom'] ?? ''),
-                    new DateTime($_POST['validUntil'] ?? '')
+                    $validFrom,
+                    $validUntil
                 );
 
                 $insuranceForm->allFilled();

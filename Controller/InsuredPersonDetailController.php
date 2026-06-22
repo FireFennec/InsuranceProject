@@ -24,6 +24,13 @@ class InsuredPersonDetailController extends Controller
         }
 
         if (isset($_GET['delete'])) {
+            $user = $this->getUser();
+            if (!$user) {
+                $this->redirect('insuredPersonList');
+            }
+            if (!$user['admin']) {
+                $this->redirect('insuredPersonList');
+            }
             $insuranceAdministration->deleteInsurance((int)$_GET['delete']);
             $this->addMessage('Pojištění bylo úspěšně smazáno.', MessageEnum::SUCCESS);
             $this->redirect('insuredPersonDetail/' . $idInsuredPerson);

@@ -16,8 +16,10 @@
 
                 <div class="col-4">
                     Pojištění pro:
-                    <?= $insuredPerson['name'] ?>
-                    <?= $insuredPerson['surname'] ?>
+                    <a href="insuredPersonDetail/<?= $insuredPerson['id'] ?>">
+                        <?= $insuredPerson['name'] ?>
+                        <?= $insuredPerson['surname'] ?>
+                    </a>
                 </div>
 
                 <div class="col-4">

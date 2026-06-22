@@ -23,7 +23,7 @@ class InsuredPersonAdministration
 
     public function deleteInsuredPerson($id):void
     {
-        Db::query('DELETE FROM insured_persons WHERE id = ?', [$id]);
+            Db::query('DELETE FROM insured_persons WHERE id = ?', [$id]);
     }
 
     public function editInsuredPerson(int $id, InsuredPersonForm $insuredPersonForm): void
