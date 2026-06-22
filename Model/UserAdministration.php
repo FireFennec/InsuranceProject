@@ -17,6 +17,16 @@ class UserAdministration
             throw new UserException('Chybně vyplněný antispam.');
         } elseif ($password != $passwordRepeat) {
             throw new UserException('Hesla se neshodují');
+        } elseif (strlen($name) < 4) {
+            throw new UserException('Jméno musí být alespoň 4 znaky dlouhé');
+        } elseif (strlen($password) < 8) {
+            throw new UserException('Hesla musí být alespoň 8 znaků dlouhé');
+        } elseif ((!preg_match('/[a-z]/', $password) || (!preg_match('/[A-Z]/', $password)))) {
+            throw new UserException('Heslo musí obsahovat alespoň jedno malé písmeno a jedno velké písmeno.');
+        } else if (strlen($name) > 30) {
+            throw new UserException('Jméno je příliš dlouhé.');
+        } else if (strlen($password) > 50) {
+            throw new UserException('Heslo je už příliš dlouhé.');
         }
         $user = [
             'name' => $name,

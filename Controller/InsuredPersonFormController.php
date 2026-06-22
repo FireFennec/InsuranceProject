@@ -14,11 +14,11 @@ class InsuredPersonFormController extends Controller
 {
     public function process(array $parameters): void
     {
-        $userAdministration = new UserAdministration();
-        if (!$userAdministration->getUser()) {
+        $user = $this->getUser();
+        if (!$user) {
             $this->redirect('insuredPersonList');
         }
-        if (!$userAdministration->getUser()['admin']) {
+        if (!$user['admin']) {
             $this->redirect('insuredPersonList');
         }
 
